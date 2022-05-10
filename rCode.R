@@ -160,8 +160,8 @@ Up <- subset(DEg, p_val_adj <.01 & avg_logFC > 2)
 dim(Down)
 dim(Up)
 
-write.csv(DEg, file = "D:/hx_article/ppt/Lung/results/DEgfdr2.csv")
-write.csv(Down, file = "D:/hx_article/ppt/Lung/results/DownDEgfdr2.csv")
-write.csv(Up, file = "D:/hx_article/ppt/Lung/results/UpDEgfdr2.csv")
+write.csv(DEg, file = "D:/hx_article/ppt/Lung/results/DEg.csv")
+write.csv(Down, file = "D:/hx_article/ppt/Lung/results/Down.csv")
+write.csv(Up, file = "D:/hx_article/ppt/Lung/results/Up.csv")
 
 
