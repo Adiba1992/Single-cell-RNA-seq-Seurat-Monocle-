@@ -14,7 +14,7 @@ library(cowplot)
 library(clues)
 
 
-my_dir <- "E:/Adiba_SingleLung_Script_fig/my_thesis/imp_docu/ShenXine/Data/Lung_data"
+my_dir <- "E:/Data/Lung_data"
 
 
 # load data
@@ -85,9 +85,6 @@ length(unsup_clustering_genes$gene_id)
 de_cluster_one <- differentialGeneTest(my_cds[unsup_clustering_genes$gene_id,],
                                        fullModelFormulaStr = '~Cluster',
                                        cores = 8)
-
-
-
 dim(de_cluster_one) 
 de_cluster_one %>% arrange(qval) %>% head()
 
@@ -131,7 +128,6 @@ my_cluster
 gene <- my_pseudotime_de[names(my_cluster[my_cluster ==1]),"gene_short_name"]
 
 clust_DE <- write.csv(gene, file = "C:/Users/HX-JTA/Desktop/fig/clustr1.csv")
-
 
 #Analyzing Branches in Single-Cell Trajectories
 plot_cell_trajectory(my_cds_subset, color_by = "Cluster")
