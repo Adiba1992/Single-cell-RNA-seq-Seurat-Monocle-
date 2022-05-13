@@ -2,13 +2,11 @@ library(dplyr)
 library(ggplot2)
 library(Seurat)
 
-
-newdat <- Read10X(data.dir = "C:/Users/ADIBA SULTANA/Desktop/Data_code/Data/")
+newdat <- Read10X(data.dir = "C:/Users/Data/")
 
 dim(newdat)
 summary(colSums(newdat))
 View(newdat)
-
 
 # Initialize the Seurat object with the raw (non-normalized data).
 pbmc <- CreateSeuratObject(counts = newdat, project = "pbmc3k", min.cells = 3, min.features = 200)
@@ -62,8 +60,6 @@ pbmc <- FindClusters(pbmc, resolution = 0.5)
 
 # Look at cluster IDs of the first 5 cells
 head(Idents(pbmc), 5)
-
-
 # If you haven't installed UMAP, you can do so via reticulate::py_install(packages =
 # 'umap-learn')
 library(umap)
@@ -131,7 +127,7 @@ VlnPlot(pbmc, features = x7, slot = "counts", log = TRUE,pt.size = 0)
 pbmc.markers <- FindAllMarkers(pbmc, min.pct = 0.25, logfc.threshold = 0.25)
 
 
-write.csv(pbmc.markers,"D:/hx_article/ppt/Lung/results/degLungSeurat.csv", row.names = FALSE)
+write.csv(pbmc.markers,"D:/Lung/results/DEGLung.csv", row.names = FALSE)
 
 #DoHeatmap(pbmc, features = top5$gene) + NoLegend()
 dim(pbmc)
@@ -140,7 +136,7 @@ DoHeatmap(pbmc, features = top10$gene, label = F) + NoLegend()
 DoHeatmap(pbmc, features = top10$gene, label = F)+ scale_fill_gradientn(colors = c("blue", "white", "red"))
 #DoHeatmap(pbmc)+ scale_fill_gradientn(colors = c("blue", "white", "red"))
 ################VolcanoPlot################################
-res <- read.csv("D:/hx_article/ppt/Lung/results/degLungSeurat.csv")
+res <- read.csv("D:/Lung/results/DEGLung.csv")
 head(res)
 dim(res)
 
@@ -160,8 +156,8 @@ Up <- subset(DEg, p_val_adj <.01 & avg_logFC > 2)
 dim(Down)
 dim(Up)
 
-write.csv(DEg, file = "D:/hx_article/ppt/Lung/results/DEg.csv")
-write.csv(Down, file = "D:/hx_article/ppt/Lung/results/Down.csv")
-write.csv(Up, file = "D:/hx_article/ppt/Lung/results/Up.csv")
+write.csv(DEg, file = "D:/Lung/results/DEg.csv")
+write.csv(Down, file = "D:/Lung/results/Down.csv")
+write.csv(Up, file = "D:/Lung/results/Up.csv")
 
 
